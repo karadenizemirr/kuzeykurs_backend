@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teachers",
+  "info": {
+    "singularName": "teacher",
+    "pluralName": "teachers",
+    "displayName": "Teacher"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "experienceYear": {
+      "type": "string"
+    },
+    "education": {
+      "type": "string"
+    },
+    "specialization": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "maxStudents": {
+      "type": "integer"
+    },
+    "hourlyRate": {
+      "type": "string"
+    },
+    "availability": {
+      "type": "json"
+    }
+  }
+}

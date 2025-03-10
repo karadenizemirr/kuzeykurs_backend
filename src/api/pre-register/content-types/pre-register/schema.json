@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pre_registers",
+  "info": {
+    "singularName": "pre-register",
+    "pluralName": "pre-registers",
+    "displayName": "PreRegister",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nameSurname": {
+      "type": "string"
+    },
+    "identifyNo": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "parentNameSurname": {
+      "type": "string"
+    },
+    "parentPhone": {
+      "type": "string"
+    },
+    "school": {
+      "type": "string"
+    },
+    "schoolClass": {
+      "type": "string"
+    },
+    "registerType": {
+      "type": "string"
+    },
+    "preRegistrationAgreementAccepted": {
+      "type": "boolean",
+      "default": true
+    },
+    "preRegistrationDisclosureRead": {
+      "type": "boolean",
+      "default": true
+    },
+    "consentToMarketingCommunications": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

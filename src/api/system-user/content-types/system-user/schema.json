@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "system_users",
+  "info": {
+    "singularName": "system-user",
+    "pluralName": "system-users",
+    "displayName": "SystemUser",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nameSurname": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "unique": true
+    },
+    "phone": {
+      "type": "string",
+      "unique": true
+    },
+    "password": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "teacher",
+        "admin",
+        "student"
+      ]
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "lastLogin": {
+      "type": "date"
+    },
+    "registrationAgreementAccepted": {
+      "type": "boolean"
+    },
+    "registrationDisclosureRead": {
+      "type": "boolean"
+    },
+    "consentToMarketingCommunications": {
+      "type": "boolean"
+    }
+  }
+}

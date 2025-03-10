@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exam_registers",
+  "info": {
+    "singularName": "exam-register",
+    "pluralName": "exam-registers",
+    "displayName": "ExamRegister",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nameSurname": {
+      "type": "string"
+    },
+    "identifyNo": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "school": {
+      "type": "string"
+    },
+    "schoolClass": {
+      "type": "string"
+    },
+    "exam": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::exam.exam",
+      "inversedBy": "exam_registers"
+    },
+    "examRegisterAgreementAccepted": {
+      "type": "boolean"
+    },
+    "examRegisterDisclosureRead": {
+      "type": "boolean"
+    },
+    "consentToMarketingCommunications": {
+      "type": "boolean"
+    },
+    "registrationDate": {
+      "type": "date"
+    },
+    "registerStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "cancelled"
+      ],
+      "default": "pending"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exams",
+  "info": {
+    "singularName": "exam",
+    "pluralName": "exams",
+    "displayName": "Exam",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "class": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "examStatus": {
+      "type": "boolean"
+    },
+    "quota": {
+      "type": "integer"
+    },
+    "registeredCount": {
+      "type": "integer"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "exam_registers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exam-register.exam-register",
+      "mappedBy": "exam"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Student",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "grade": {
+      "type": "string"
+    },
+    "school": {
+      "type": "string"
+    },
+    "parentName": {
+      "type": "string"
+    },
+    "parentSurname": {
+      "type": "string"
+    },
+    "parentPhone": {
+      "type": "string"
+    },
+    "learningStyle": {
+      "type": "enumeration",
+      "enum": [
+        "visual",
+        "auditory",
+        "kinesthetic"
+      ]
+    },
+    "performanceLevel": {
+      "type": "string"
+    },
+    "spetialNeeds": {
+      "type": "boolean"
+    },
+    "preferredTime": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "system_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::system-user.system-user"
+    }
+  }
+}

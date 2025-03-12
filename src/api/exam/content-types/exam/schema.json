@@ -30,7 +30,8 @@
       "type": "integer"
     },
     "registeredCount": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "logo": {
       "type": "string"

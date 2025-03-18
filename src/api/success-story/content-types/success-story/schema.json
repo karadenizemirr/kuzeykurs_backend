@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "success_stories",
+  "info": {
+    "singularName": "success-story",
+    "pluralName": "success-stories",
+    "displayName": "SuccessStory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nameSurname": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "examType": {
+      "type": "string"
+    },
+    "examYear": {
+      "type": "string"
+    },
+    "school": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "story": {
+      "type": "text"
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "imagePath": {
+      "type": "string"
+    },
+    "rank": {
+      "type": "integer"
+    },
+    "quote": {
+      "type": "string"
+    }
+  }
+}

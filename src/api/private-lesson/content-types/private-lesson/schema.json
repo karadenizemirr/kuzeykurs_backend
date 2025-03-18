@@ -1,0 +1,154 @@
+{
+  "kind": "collectionType",
+  "collectionName": "private_lessons",
+  "info": {
+    "singularName": "private-lesson",
+    "pluralName": "private-lessons",
+    "displayName": "PrivateLesson",
+    "description": "Özel ders başvuru formları"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "minLength": 2,
+      "maxLength": 50
+    },
+    "lastName": {
+      "type": "string",
+      "required": true,
+      "minLength": 2,
+      "maxLength": 50
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "regex": "^[0-9\\s\\(\\)\\-\\+]{10,15}$"
+    },
+    "grade": {
+      "type": "enumeration",
+      "enum": [
+        "ilkokul",
+        "ortaokul",
+        "lise1",
+        "lise2",
+        "lise3",
+        "lise4",
+        "mezun",
+        "universite",
+        "yetiskin"
+      ],
+      "required": true
+    },
+    "howDidYouHear": {
+      "type": "enumeration",
+      "enum": [
+        "search",
+        "social",
+        "friend",
+        "education",
+        "ad",
+        "other"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "selectedLesson": {
+      "type": "integer",
+      "required": true
+    },
+    "preferredSchedule": {
+      "type": "enumeration",
+      "enum": [
+        "weekday_morning",
+        "weekday_afternoon", 
+        "weekday_evening",
+        "weekend_morning",
+        "weekend_afternoon",
+        "weekend_evening",
+        "flexible"
+      ],
+      "required": true
+    },
+    "preferredLocation": {
+      "type": "enumeration",
+      "enum": [
+        "student_home", 
+        "teacher_office",
+        "online",
+        "flexible_location"
+      ],
+      "required": true,
+      "description": "Kuzey Kütüphane (student_home), Kuzey Etüt Salonu (teacher_office), Online Ders (online), Farketmez (flexible_location)"
+    },
+    "learningGoals": {
+      "type": "enumeration",
+      "enum": [
+        "exam_preparation",
+        "grade_improvement",
+        "subject_mastery",
+        "homework_help",
+        "skill_development",
+        "learning_gap"
+      ],
+      "required": true
+    },
+    "priorExperience": {
+      "type": "enumeration",
+      "enum": [
+        "yes",
+        "no"
+      ]
+    },
+    "urgencyLevel": {
+      "type": "enumeration",
+      "enum": [
+        "high",
+        "normal",
+        "low"
+      ],
+      "default": "normal"
+    },
+    "message": {
+      "type": "text"
+    },
+    "agreeToTerms": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "contacted",
+        "scheduled",
+        "assigned",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending",
+      "required": true
+    },
+    "assignedTo": {
+      "type": "string"
+    },
+    "firstContactDate": {
+      "type": "datetime"
+    },
+    "notes": {
+      "type": "richtext"
+    }
+  }
+}

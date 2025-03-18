@@ -436,8 +436,8 @@ export interface ApiExamRegisterExamRegister
     > &
       Schema.Attribute.DefaultTo<'pending'>;
     registrationDate: Schema.Attribute.Date;
-    school: Schema.Attribute.String;
     schoolClass: Schema.Attribute.String;
+    schoolName: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -587,6 +587,119 @@ export interface ApiPreRegisterPreRegister extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPrivateLessonPrivateLesson
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'private_lessons';
+  info: {
+    description: '\u00D6zel ders ba\u015Fvuru formlar\u0131';
+    displayName: 'PrivateLesson';
+    pluralName: 'private-lessons';
+    singularName: 'private-lesson';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    agreeToTerms: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    assignedTo: Schema.Attribute.String;
+    category: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    firstContactDate: Schema.Attribute.DateTime;
+    firstName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 2;
+      }>;
+    grade: Schema.Attribute.Enumeration<
+      [
+        'ilkokul',
+        'ortaokul',
+        'lise1',
+        'lise2',
+        'lise3',
+        'lise4',
+        'mezun',
+        'universite',
+        'yetiskin',
+      ]
+    > &
+      Schema.Attribute.Required;
+    howDidYouHear: Schema.Attribute.Enumeration<
+      ['search', 'social', 'friend', 'education', 'ad', 'other']
+    >;
+    lastName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 2;
+      }>;
+    learningGoals: Schema.Attribute.Enumeration<
+      [
+        'exam_preparation',
+        'grade_improvement',
+        'subject_mastery',
+        'homework_help',
+        'skill_development',
+        'learning_gap',
+      ]
+    > &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::private-lesson.private-lesson'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    notes: Schema.Attribute.RichText;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    preferredLocation: Schema.Attribute.Enumeration<
+      ['student_home', 'teacher_office', 'online', 'flexible_location']
+    > &
+      Schema.Attribute.Required;
+    preferredSchedule: Schema.Attribute.Enumeration<
+      [
+        'weekday_morning',
+        'weekday_afternoon',
+        'weekday_evening',
+        'weekend_morning',
+        'weekend_afternoon',
+        'weekend_evening',
+        'flexible',
+      ]
+    > &
+      Schema.Attribute.Required;
+    priorExperience: Schema.Attribute.Enumeration<['yes', 'no']>;
+    publishedAt: Schema.Attribute.DateTime;
+    selectedLesson: Schema.Attribute.Integer & Schema.Attribute.Required;
+    status: Schema.Attribute.Enumeration<
+      [
+        'pending',
+        'contacted',
+        'scheduled',
+        'assigned',
+        'completed',
+        'cancelled',
+      ]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pending'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    urgencyLevel: Schema.Attribute.Enumeration<['high', 'normal', 'low']> &
+      Schema.Attribute.DefaultTo<'normal'>;
+  };
+}
+
 export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
   collectionName: 'students';
   info: {
@@ -625,6 +738,47 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::system-user.system-user'
     >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSuccessStorySuccessStory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'success_stories';
+  info: {
+    description: '';
+    displayName: 'SuccessStory';
+    pluralName: 'success-stories';
+    singularName: 'success-story';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    department: Schema.Attribute.String;
+    email: Schema.Attribute.String;
+    examType: Schema.Attribute.String;
+    examYear: Schema.Attribute.String;
+    imagePath: Schema.Attribute.String;
+    isActive: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::success-story.success-story'
+    > &
+      Schema.Attribute.Private;
+    nameSurname: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    quote: Schema.Attribute.String;
+    rank: Schema.Attribute.Integer;
+    school: Schema.Attribute.String;
+    story: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1219,7 +1373,9 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::post.post': ApiPostPost;
       'api::pre-register.pre-register': ApiPreRegisterPreRegister;
+      'api::private-lesson.private-lesson': ApiPrivateLessonPrivateLesson;
       'api::student.student': ApiStudentStudent;
+      'api::success-story.success-story': ApiSuccessStorySuccessStory;
       'api::system-user.system-user': ApiSystemUserSystemUser;
       'api::teacher.teacher': ApiTeacherTeacher;
       'plugin::content-releases.release': PluginContentReleasesRelease;

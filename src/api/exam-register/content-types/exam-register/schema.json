@@ -20,7 +20,7 @@
     "phone": {
       "type": "string"
     },
-    "school": {
+    "schoolName": {
       "type": "string"
     },
     "schoolClass": {

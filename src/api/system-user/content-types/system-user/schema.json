@@ -47,6 +47,50 @@
     },
     "consentToMarketingCommunications": {
       "type": "boolean"
+    },
+    "username": {
+      "type": "string",
+      "unique": true
+    },
+    "confirmPassword": {
+      "type": "string",
+      "private": true
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "examType": {
+      "type": "enumeration",
+      "enum": [
+        "YKS",
+        "LGS",
+        "KPSS"
+      ]
+    },
+    "schoolName": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "targetUniversity": {
+      "type": "string"
+    },
+    "targetDepartment": {
+      "type": "string"
+    },
+    "birthDate": {
+      "type": "date"
+    },
+    "profilePhoto": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "acceptTerms": {
+      "type": "boolean"
     }
   }
 }

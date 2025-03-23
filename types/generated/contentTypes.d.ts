@@ -703,6 +703,7 @@ export interface ApiPrivateLessonPrivateLesson
 export interface ApiSeasonSeason extends Struct.CollectionTypeSchema {
   collectionName: 'seasons';
   info: {
+    description: 'Academic terms and semesters for educational institution';
     displayName: 'Season';
     pluralName: 'seasons';
     singularName: 'season';
@@ -711,20 +712,58 @@ export interface ApiSeasonSeason extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    academicYear: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    endDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    enrollmentLimit: Schema.Attribute.Integer;
+    examEndDate: Schema.Attribute.Date;
+    examStartDate: Schema.Attribute.Date;
+    feeStructure: Schema.Attribute.JSON;
+    holidayDates: Schema.Attribute.JSON;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::season.season'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
+    registrationEndDate: Schema.Attribute.Date;
+    registrationStartDate: Schema.Attribute.Date;
+    semester: Schema.Attribute.Enumeration<['fall', 'spring', 'summer']>;
+    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    status: Schema.Attribute.Enumeration<
+      ['preparation', 'registration', 'ongoing', 'completed', 'archived']
+    > &
+      Schema.Attribute.DefaultTo<'preparation'>;
+    type: Schema.Attribute.Enumeration<
+      ['regular', 'summer', 'intensive', 'special']
+    > &
+      Schema.Attribute.DefaultTo<'regular'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    weekCount: Schema.Attribute.Integer;
   };
 }
 

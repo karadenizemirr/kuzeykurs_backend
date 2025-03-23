@@ -2,15 +2,14 @@
   "kind": "collectionType",
   "collectionName": "seasons",
   "info": {
-    "name": "Season",
+    "singularName": "season",
+    "pluralName": "seasons",
+    "displayName": "Season",
     "description": "Academic terms and semesters for educational institution"
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",

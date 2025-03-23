@@ -700,6 +700,34 @@ export interface ApiPrivateLessonPrivateLesson
   };
 }
 
+export interface ApiSeasonSeason extends Struct.CollectionTypeSchema {
+  collectionName: 'seasons';
+  info: {
+    displayName: 'Season';
+    pluralName: 'seasons';
+    singularName: 'season';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::season.season'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
   collectionName: 'students';
   info: {
@@ -797,11 +825,17 @@ export interface ApiSystemUserSystemUser extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    acceptTerms: Schema.Attribute.Boolean;
+    birthDate: Schema.Attribute.Date;
+    confirmPassword: Schema.Attribute.String & Schema.Attribute.Private;
     consentToMarketingCommunications: Schema.Attribute.Boolean;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.String & Schema.Attribute.Unique;
+    examType: Schema.Attribute.Enumeration<['YKS', 'LGS', 'KPSS']>;
+    fullName: Schema.Attribute.String;
+    grade: Schema.Attribute.String;
     isActive: Schema.Attribute.Boolean;
     lastLogin: Schema.Attribute.Date;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -813,13 +847,18 @@ export interface ApiSystemUserSystemUser extends Struct.CollectionTypeSchema {
     nameSurname: Schema.Attribute.String;
     password: Schema.Attribute.String;
     phone: Schema.Attribute.String & Schema.Attribute.Unique;
+    profilePhoto: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     registrationAgreementAccepted: Schema.Attribute.Boolean;
     registrationDisclosureRead: Schema.Attribute.Boolean;
     role: Schema.Attribute.Enumeration<['teacher', 'admin', 'student']>;
+    schoolName: Schema.Attribute.String;
+    targetDepartment: Schema.Attribute.String;
+    targetUniversity: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    username: Schema.Attribute.String & Schema.Attribute.Unique;
   };
 }
 
@@ -1374,6 +1413,7 @@ declare module '@strapi/strapi' {
       'api::post.post': ApiPostPost;
       'api::pre-register.pre-register': ApiPreRegisterPreRegister;
       'api::private-lesson.private-lesson': ApiPrivateLessonPrivateLesson;
+      'api::season.season': ApiSeasonSeason;
       'api::student.student': ApiStudentStudent;
       'api::success-story.success-story': ApiSuccessStorySuccessStory;
       'api::system-user.system-user': ApiSystemUserSystemUser;

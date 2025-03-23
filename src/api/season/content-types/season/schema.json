@@ -1,0 +1,105 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seasons",
+  "info": {
+    "name": "Season",
+    "description": "Academic terms and semesters for educational institution"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 100
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 20
+    },
+    "academicYear": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "registrationStartDate": {
+      "type": "date"
+    },
+    "registrationEndDate": {
+      "type": "date"
+    },
+    "examStartDate": {
+      "type": "date"
+    },
+    "examEndDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "preparation",
+        "registration",
+        "ongoing",
+        "completed",
+        "archived"
+      ],
+      "default": "preparation"
+    },
+    "semester": {
+      "type": "enumeration",
+      "enum": [
+        "fall",
+        "spring",
+        "summer"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "weekCount": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "regular",
+        "summer",
+        "intensive",
+        "special"
+      ],
+      "default": "regular"
+    },
+    "holidayDates": {
+      "type": "json"
+    },
+    "enrollmentLimit": {
+      "type": "integer"
+    },
+    "feeStructure": {
+      "type": "json"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_details",
+  "info": {
+    "singularName": "user-detail",
+    "pluralName": "user-details",
+    "displayName": "UserDetail",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nameSurname": {
+      "type": "string"
+    },
+    "examPreparing": {
+      "type": "string"
+    },
+    "schoolName": {
+      "type": "string"
+    },
+    "schoolClass": {
+      "type": "string"
+    },
+    "targetUniversity": {
+      "type": "string"
+    },
+    "targetDepartment": {
+      "type": "string"
+    },
+    "bornDate": {
+      "type": "string"
+    },
+    "proflleImage": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "user_detail"
+    }
+  }
+}

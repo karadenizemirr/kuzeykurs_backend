@@ -936,6 +936,46 @@ export interface ApiTeacherTeacher extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiUserDetailUserDetail extends Struct.CollectionTypeSchema {
+  collectionName: 'user_details';
+  info: {
+    description: '';
+    displayName: 'UserDetail';
+    pluralName: 'user-details';
+    singularName: 'user-detail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bornDate: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    examPreparing: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-detail.user-detail'
+    > &
+      Schema.Attribute.Private;
+    nameSurname: Schema.Attribute.String;
+    proflleImage: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    schoolClass: Schema.Attribute.String;
+    schoolName: Schema.Attribute.String;
+    targetDepartment: Schema.Attribute.String;
+    targetUniversity: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1391,7 +1431,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1426,6 +1465,10 @@ export interface PluginUsersPermissionsUser
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_detail: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::user-detail.user-detail'
+    >;
     username: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -1457,6 +1500,7 @@ declare module '@strapi/strapi' {
       'api::success-story.success-story': ApiSuccessStorySuccessStory;
       'api::system-user.system-user': ApiSystemUserSystemUser;
       'api::teacher.teacher': ApiTeacherTeacher;
+      'api::user-detail.user-detail': ApiUserDetailUserDetail;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

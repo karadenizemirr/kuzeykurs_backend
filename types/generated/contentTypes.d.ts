@@ -753,7 +753,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     downvotes: Schema.Attribute.String;
     files: Schema.Attribute.String;
-    images: Schema.Attribute.String;
+    images: Schema.Attribute.JSON;
     isFeatured: Schema.Attribute.Boolean;
     isStatus: Schema.Attribute.String;
     isStauts: Schema.Attribute.Enumeration<['open', 'closed', 'confirmed']>;
@@ -764,6 +764,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    subjectIds: Schema.Attribute.String;
     subjects: Schema.Attribute.JSON;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

@@ -17,9 +17,6 @@
     "content": {
       "type": "string"
     },
-    "images": {
-      "type": "string"
-    },
     "files": {
       "type": "string"
     },
@@ -54,6 +51,12 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "question"
+    },
+    "images": {
+      "type": "json"
+    },
+    "subjectIds": {
+      "type": "string"
     }
   }
 }

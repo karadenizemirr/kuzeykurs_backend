@@ -20,9 +20,6 @@
     "files": {
       "type": "string"
     },
-    "isStatus": {
-      "type": "string"
-    },
     "isFeatured": {
       "type": "boolean"
     },

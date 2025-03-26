@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "answers",
+  "info": {
+    "singularName": "answer",
+    "pluralName": "answers",
+    "displayName": "Answer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "images": {
+      "type": "string"
+    },
+    "files": {
+      "type": "string"
+    },
+    "isAccepted": {
+      "type": "boolean"
+    },
+    "isTeacherVerified": {
+      "type": "boolean"
+    },
+    "upvotes": {
+      "type": "string"
+    },
+    "downvotes": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "images": {
+      "type": "string"
+    },
+    "files": {
+      "type": "string"
+    },
+    "isStatus": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "viewCount": {
+      "type": "integer"
+    },
+    "upvotes": {
+      "type": "string"
+    },
+    "downvotes": {
+      "type": "string"
+    },
+    "isStauts": {
+      "type": "enumeration",
+      "enum": [
+        "open",
+        "closed",
+        "confirmed"
+      ]
+    },
+    "subjects": {
+      "type": "json"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "question"
+    }
+  }
+}

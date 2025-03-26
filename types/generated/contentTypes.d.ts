@@ -369,6 +369,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
+  collectionName: 'answers';
+  info: {
+    description: '';
+    displayName: 'Answer';
+    pluralName: 'answers';
+    singularName: 'answer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    downvotes: Schema.Attribute.String;
+    files: Schema.Attribute.String;
+    images: Schema.Attribute.String;
+    isAccepted: Schema.Attribute.Boolean;
+    isTeacherVerified: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::answer.answer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    upvotes: Schema.Attribute.String;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -697,6 +732,49 @@ export interface ApiPrivateLessonPrivateLesson
       Schema.Attribute.Private;
     urgencyLevel: Schema.Attribute.Enumeration<['high', 'normal', 'low']> &
       Schema.Attribute.DefaultTo<'normal'>;
+  };
+}
+
+export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
+  collectionName: 'questions';
+  info: {
+    description: '';
+    displayName: 'Question';
+    pluralName: 'questions';
+    singularName: 'question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    downvotes: Schema.Attribute.String;
+    files: Schema.Attribute.String;
+    images: Schema.Attribute.String;
+    isFeatured: Schema.Attribute.Boolean;
+    isStatus: Schema.Attribute.String;
+    isStauts: Schema.Attribute.Enumeration<['open', 'closed', 'confirmed']>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question.question'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subjects: Schema.Attribute.JSON;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    upvotes: Schema.Attribute.String;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    viewCount: Schema.Attribute.Integer;
   };
 }
 
@@ -1457,6 +1535,7 @@ export interface PluginUsersPermissionsUser
       }>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.Relation<'oneToOne', 'api::question.question'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
@@ -1488,6 +1567,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::answer.answer': ApiAnswerAnswer;
       'api::category.category': ApiCategoryCategory;
       'api::exam-register.exam-register': ApiExamRegisterExamRegister;
       'api::exam.exam': ApiExamExam;
@@ -1495,6 +1575,7 @@ declare module '@strapi/strapi' {
       'api::post.post': ApiPostPost;
       'api::pre-register.pre-register': ApiPreRegisterPreRegister;
       'api::private-lesson.private-lesson': ApiPrivateLessonPrivateLesson;
+      'api::question.question': ApiQuestionQuestion;
       'api::season.season': ApiSeasonSeason;
       'api::student.student': ApiStudentStudent;
       'api::success-story.success-story': ApiSuccessStorySuccessStory;

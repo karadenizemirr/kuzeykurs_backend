@@ -70,6 +70,12 @@
       "relation": "oneToOne",
       "target": "api::user-detail.user-detail",
       "inversedBy": "user"
+    },
+    "question": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::question.question",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

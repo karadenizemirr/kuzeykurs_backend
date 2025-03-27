@@ -381,13 +381,12 @@ export interface ApiAnswerAnswer extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    attachments: Schema.Attribute.JSON;
     content: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     downvotes: Schema.Attribute.String;
-    files: Schema.Attribute.String;
-    images: Schema.Attribute.String;
     isAccepted: Schema.Attribute.Boolean;
     isTeacherVerified: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -755,7 +754,6 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     files: Schema.Attribute.String;
     images: Schema.Attribute.JSON;
     isFeatured: Schema.Attribute.Boolean;
-    isStatus: Schema.Attribute.String;
     isStauts: Schema.Attribute.Enumeration<['open', 'closed', 'confirmed']>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

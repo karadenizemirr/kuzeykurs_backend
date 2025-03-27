@@ -14,12 +14,6 @@
     "content": {
       "type": "string"
     },
-    "images": {
-      "type": "string"
-    },
-    "files": {
-      "type": "string"
-    },
     "isAccepted": {
       "type": "boolean"
     },
@@ -31,6 +25,9 @@
     },
     "downvotes": {
       "type": "string"
+    },
+    "attachments": {
+      "type": "json"
     }
   }
 }
